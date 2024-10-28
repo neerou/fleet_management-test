@@ -4,12 +4,12 @@
    "main": "index.js",
    "scripts": {
       "test": "cucumber-js",
-      "start": "ts-node src/App/index.ts",
-      "cli": "ts-node src/App/index.ts",
+      "start": "ts-node src/App/cli.ts",
+      "cli": "ts-node src/App/cli.ts",
       "typeorm": "typeorm"
    },
    "bin": {
-      "your-cli-command": ".src/App/index.js"
+      "your-cli-command": ".src/App/cli.js"
    },
    "keywords": [],
    "author": "",

@@ -6,12 +6,12 @@ var rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
-// Function to display fizBuzz
+// Function to display fizzBuzz
 function fizzBuzzInteractive() {
     rl.question('Please enter a number: ', function (input) {
         var number = parseFloat(input);
-        if (isNaN(number)) {
-            console.log('That is not a valid number. Please try again.');
+        if (isNaN(number) || number < 0) {
+            console.log('That is not a valid positive number. Please try again.');
             fizzBuzzInteractive(); // Ask again if input is invalid
         }
         else {
@@ -21,7 +21,6 @@ function fizzBuzzInteractive() {
         }
     });
 }
-fizzBuzzInteractive();
 function processInput(number) {
     for (var i = 0; i <= number; i++) {
         if (i % 3 === 0 && i % 5 === 0) {
@@ -39,3 +38,4 @@ function processInput(number) {
         console.log(i);
     }
 }
+fizzBuzzInteractive();
