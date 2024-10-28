@@ -108,13 +108,11 @@ var VehicleLocalisation = /** @class */ (function () {
                         fleetInformation = _a.sent();
                         if (!fleetInformation) {
                             return [2 /*return*/, { code: iResult_1.Codes.Failed, message: iResult_1.Messages.FLEET_NOT_FOUND }];
-                            //return "fleet does not exist";
                         }
                         return [4 /*yield*/, (0, queries_1.LoadFleetVehicle)(fleetId, vehicleInformation.vehicleId)];
                     case 3:
                         fleetToVehicle = _a.sent();
                         if (!fleetToVehicle) {
-                            //return "Vehicle is not assigned to fleet. Cannot localise parking";
                             return [2 /*return*/, { code: iResult_1.Codes.Failed, message: iResult_1.Messages.VEHICLE_NOT_FOUND }];
                         }
                         return [4 /*yield*/, (0, queries_1.loadParkedVehicleLocalisation)(fleetToVehicle.fleetVehicleId)];
@@ -124,7 +122,7 @@ var VehicleLocalisation = /** @class */ (function () {
                         return [4 /*yield*/, (0, queries_1.DeLocaliseVehicle)(vehicleLocalisation.localisationId)];
                     case 5:
                         localiseVehicle = _a.sent();
-                        this.iResult = { code: iResult_1.Codes.Success, message: iResult_1.Messages.DELOCALISED, insertedId: localiseVehicle };
+                        this.iResult = { code: iResult_1.Codes.Success, message: iResult_1.Messages.DELOCALISED };
                         return [3 /*break*/, 7];
                     case 6:
                         this.iResult = { code: iResult_1.Codes.Warning, message: iResult_1.Messages.DELOCALISED };

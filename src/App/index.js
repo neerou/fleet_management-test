@@ -44,21 +44,6 @@ var Fleet_1 = require("../Domain/actions/Fleet");
 var path_1 = require("path");
 dotenv.config({ path: (0, path_1.resolve)(__dirname, '../../.env') });
 var program = new commander_1.Command();
-// program
-//   .command('hello')
-//   .description('Prints a hello message')
-//   .option('-n, --name <name>', 'Specify a name')
-//   .action((options) => {
-//     console.log(`Hello, ${options.name}!`);
-//     console.log('Database User:', process.env.DB_USER);
-//     console.log('Database Password:', process.env.DB_PASSWORD);
-//   });
-// program
-//   .command('goodbye')
-//   .description('Prints a goodbye message')
-//   .action(() => {
-//     console.log('Goodbye, World!');
-//   });
 program
     .command('create <userId>')
     .description('Creates a fleet and returns a fleetId')
@@ -111,38 +96,22 @@ program
         }
     });
 }); });
-// const main = async () => {
-//   try {
-//     // Create Fleet
-//     const createNewFleet = new Fleet();
-//     const createFleetResult = await createNewFleet.CreateFleet(1);
-//     console.log(createFleetResult);
-//     // Register Vehicle
-//     const registerVehicle = new FleetVehicles();
-//     const registerVehicleResult = await registerVehicle.RegisterVehicle(
-//       1,
-//       "25000"
-//     );
-//     console.log(registerVehicleResult);
-//     // Register Parking Location
-//     const vehicleLocalisation = new VehicleLocalisation();
-//     const localiseVehicle = await vehicleLocalisation.LocaliseVehicle(
-//       1,
-//       "AN684",
-//       "360 360 90"
-//     );
-//     console.log(localiseVehicle);
-//     // De Localise
-//     const vehicleDeLocalisation = new VehicleLocalisation();
-//     const delocaliseVehicle = await vehicleDeLocalisation.DeLocaliseVehicle(
-//       1,
-//       "AN684"
-//     );
-//     console.log(delocaliseVehicle);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-// main();
+program
+    .command('delocalize-vehicle <fleetId> <vehiclePlateNumber>')
+    .description('Delocalizes a vehicle in a fleet')
+    .action(function (fleetId, vehiclePlateNumber) { return __awaiter(void 0, void 0, void 0, function () {
+    var vehicleDeLocalisation, localiseVehicle;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                vehicleDeLocalisation = new VehicleLocalisation_1.VehicleLocalisation();
+                return [4 /*yield*/, vehicleDeLocalisation.DeLocaliseVehicle(fleetId, vehiclePlateNumber)];
+            case 1:
+                localiseVehicle = _a.sent();
+                console.log(localiseVehicle);
+                return [2 /*return*/];
+        }
+    });
+}); });
 // Parse command line arguments
 program.parse(process.argv);

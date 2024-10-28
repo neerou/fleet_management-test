@@ -81,7 +81,7 @@ class VehicleLocalisation {
     const fleetInformation = await LoadFleet(fleetId);
     if (!fleetInformation) {
       return { code: Codes.Failed, message: Messages.FLEET_NOT_FOUND };
-      //return "fleet does not exist";
+     
     }
 
     // If vehicle is not assigned to fleet, return
@@ -90,7 +90,7 @@ class VehicleLocalisation {
       vehicleInformation.vehicleId
     );
     if (!fleetToVehicle) {
-      //return "Vehicle is not assigned to fleet. Cannot localise parking";
+
       return { code: Codes.Failed, message: Messages.VEHICLE_NOT_FOUND };
     }
 
@@ -99,17 +99,12 @@ class VehicleLocalisation {
       fleetToVehicle.fleetVehicleId
     );
 
-    /*  if (!vehicleLocalisation) {
-        return "This vehicle is not parked yet";
-      }*/
-
     // we delocalise the parking
-
     if (vehicleLocalisation) {
       const localiseVehicle = await DeLocaliseVehicle(
         vehicleLocalisation.localisationId
       )
-      this.iResult = { code: Codes.Success, message: Messages.DELOCALISED, insertedId: localiseVehicle };
+      this.iResult = { code: Codes.Success, message: Messages.DELOCALISED  };
 
     } else {
       this.iResult = { code: Codes.Warning, message: Messages.DELOCALISED };

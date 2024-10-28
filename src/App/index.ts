@@ -9,27 +9,6 @@ import { resolve } from 'path';
 dotenv.config({ path: resolve(__dirname, '../../.env') });
 const program = new Command();
 
-
-// program
-//   .command('hello')
-//   .description('Prints a hello message')
-//   .option('-n, --name <name>', 'Specify a name')
-//   .action((options) => {
-//     console.log(`Hello, ${options.name}!`);
-//     console.log('Database User:', process.env.DB_USER);
-//     console.log('Database Password:', process.env.DB_PASSWORD);
-
-//   });
-
-
-// program
-//   .command('goodbye')
-//   .description('Prints a goodbye message')
-//   .action(() => {
-//     console.log('Goodbye, World!');
-//   });
-
-
 program
   .command('create <userId>')
   .description('Creates a fleet and returns a fleetId')
@@ -66,48 +45,19 @@ program
 
   });
 
-// const main = async () => {
-//   try {
-//     // Create Fleet
-//     const createNewFleet = new Fleet();
-//     const createFleetResult = await createNewFleet.CreateFleet(1);
-//     console.log(createFleetResult);
+program
+  .command('delocalize-vehicle <fleetId> <vehiclePlateNumber>')
+  .description('Delocalizes a vehicle in a fleet')
+  .action(async (fleetId, vehiclePlateNumber) => {
+    const vehicleDeLocalisation = new VehicleLocalisation();
+    const localiseVehicle = await vehicleDeLocalisation.DeLocaliseVehicle(
+      fleetId, vehiclePlateNumber
+    );
 
+    console.log(localiseVehicle);
 
-//     // Register Vehicle
-//     const registerVehicle = new FleetVehicles();
-//     const registerVehicleResult = await registerVehicle.RegisterVehicle(
-//       1,
-//       "25000"
-//     );
-//     console.log(registerVehicleResult);
+  });
 
-//     // Register Parking Location
-//     const vehicleLocalisation = new VehicleLocalisation();
-//     const localiseVehicle = await vehicleLocalisation.LocaliseVehicle(
-//       1,
-//       "AN684",
-//       "360 360 90"
-//     );
-
-//     console.log(localiseVehicle);
-
-//     // De Localise
-//     const vehicleDeLocalisation = new VehicleLocalisation();
-//     const delocaliseVehicle = await vehicleDeLocalisation.DeLocaliseVehicle(
-//       1,
-//       "AN684"
-//     );
-
-//     console.log(delocaliseVehicle);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-
-
-// main();
 
 // Parse command line arguments
 program.parse(process.argv);
